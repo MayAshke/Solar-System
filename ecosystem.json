@@ -1,0 +1,27 @@
+{
+    "apps": [
+      {
+        "name": "epicure-server",
+        "script": "./server.js",
+        "env": {
+          "NODE_ENV": "production"
+        }
+      }
+    ],
+    "deploy": {
+      "production": {
+        "key": "/Users/mayas/.ssh/solar-system-prod.pem",
+        "user": "ubuntu",
+        "host": ["ec2-16-171-33-83.eu-north-1.compute.amazonaws.com"],
+        "ref": "origin/main",
+        "repo": "git@github.com:MayAshke/Solar-System.git",
+        "path": "/home/ubuntu/solar-system",
+        "ssh_options": "StrictHostKeyChecking=no",
+        "post-deploy": "cd /home/ubuntu/solar-system/source && export NODE_ENV=production && mkdir -p logs && npm install && pm2 reload ecosystem.json --env production",
+        "pre-deploy-local": "echo 'Deploying code to servers'",
+        "env": {
+          "NODE_ENV": "production"
+        }
+      }
+    }
+  }
