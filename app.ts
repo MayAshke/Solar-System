@@ -5,10 +5,12 @@ import connectDB from './config/db';
 import planetRoutes from './modules/planets/planets.routes';
 import systemRoutes from './modules/systems/systems.routes';
 import visitorRoutes from './modules/visitors/visitors.routes';
+import { console } from 'node:inspector/promises';
 
 const app = express();
 app.use(express.json());
-
+console.log(process.env.PORT);
+console.log(process.env.MONGO_URI);
 app.use(cors({
   origin: '*', 
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
